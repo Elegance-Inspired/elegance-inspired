@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="space-y-4">
             <Link href="/" className="inline-block">
               <Image
-                src="/placeholder.svg?height=40&width=160"
+                src="/Elegance logo.png"
                 alt="Elegance Inspired Limited"
                 width={160}
                 height={40}

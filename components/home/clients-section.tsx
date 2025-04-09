@@ -1,43 +1,10 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
-import { Star } from "lucide-react"
-
-const clients = [
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-]
-
-const testimonials = [
-  {
-    name: "Sarah Johnson",
-    company: "Tech Innovations Inc.",
-    image: "/placeholder.svg?height=100&width=100",
-    text: "Elegance Inspired transformed our brand identity completely. Their strategic approach and creative solutions helped us stand out in a competitive market.",
-  },
-  {
-    name: "Michael Chen",
-    company: "Global Solutions Ltd.",
-    image: "/placeholder.svg?height=100&width=100",
-    text: "Working with the Elegance team was a game-changer for our business. Their attention to detail and understanding of our vision exceeded our expectations.",
-  },
-  {
-    name: "Jessica Williams",
-    company: "Eco Friendly Products",
-    image: "/placeholder.svg?height=100&width=100",
-    text: "The branding package we received was comprehensive and perfectly aligned with our company values. Highly recommend their services to any business looking to elevate their brand.",
-  },
-]
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Star } from "lucide-react";
+import { clients, testimonials } from "@/data";
 
 export default function ClientsSection() {
   return (
@@ -60,8 +27,9 @@ export default function ClientsSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-muted-foreground max-w-2xl mx-auto"
           >
-            At Elegance, our clients' success is our top priority. We work closely with our clients to develop tailored
-            branding solutions that resonate and make a lasting impact.
+            At Elegance, our clients' success is our top priority. We work
+            closely with our clients to develop tailored branding solutions that
+            resonate and make a lasting impact.
           </motion.p>
         </div>
 
@@ -115,10 +83,15 @@ export default function ClientsSection() {
                 <CardContent className="pt-6">
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                      <Star
+                        key={i}
+                        className="h-5 w-5 text-yellow-400 fill-yellow-400"
+                      />
                     ))}
                   </div>
-                  <p className="mb-6 italic text-muted-foreground">"{testimonial.text}"</p>
+                  <p className="mb-6 italic text-muted-foreground">
+                    "{testimonial.text}"
+                  </p>
                   <div className="flex items-center">
                     <Image
                       src={testimonial.image || "/placeholder.svg"}
@@ -129,7 +102,9 @@ export default function ClientsSection() {
                     />
                     <div>
                       <h4 className="font-bold">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {testimonial.company}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -139,5 +114,5 @@ export default function ClientsSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

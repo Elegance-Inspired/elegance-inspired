@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 export default function ContactMap() {
   return (
@@ -28,7 +28,7 @@ export default function ContactMap() {
         >
           <div className="aspect-video w-full">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.45932537!2d3.1191195!3d6.5483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1649252938261!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d150885.66883398202!2d7.293974425069468!3d9.024392709741416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e745f4cd62fd9%3A0x53bd17b4a20ea12b!2sAbuja%2C%20Federal%20Capital%20Territory!5e1!3m2!1sen!2sng!4v1744159271287!5m2!1sen!2sng"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -42,5 +42,5 @@ export default function ContactMap() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

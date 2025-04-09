@@ -1,18 +1,23 @@
-import type { Metadata } from "next"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import { generateMetadata } from "@/lib/seo-config"
-import PageHeader from "@/components/page-header"
-import ContactForm from "@/components/contact/contact-form"
-import ContactInfo from "@/components/contact/contact-info"
-import ContactMap from "@/components/contact/contact-map"
+import type { Metadata } from "next";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import { generateMetadata } from "@/lib/seo-config";
+import PageHeader from "@/components/page-header";
+import ContactForm from "@/components/contact/contact-form";
+import ContactInfo from "@/components/contact/contact-info";
+import ContactMap from "@/components/contact/contact-map";
 
 export const metadata: Metadata = generateMetadata(
   "Contact Us - Get in Touch with Elegance Inspired",
   "Contact Elegance Inspired Limited for all your branding, marketing, advertising, and printing needs. We're here to help elevate your brand.",
   "/images/contact-og.jpg",
-  ["contact us", "branding agency contact", "get in touch", "branding consultation"],
-)
+  [
+    "contact us",
+    "branding agency contact",
+    "get in touch",
+    "branding consultation",
+  ]
+);
 
 export default function ContactPage() {
   return (
@@ -33,5 +38,5 @@ export default function ContactPage() {
       <ContactMap />
       <Footer />
     </main>
-  )
+  );
 }

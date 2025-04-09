@@ -15,7 +15,13 @@ export default function HeroSection() {
 
         if (textRef.current) {
           new Typed(textRef.current, {
-            strings: ["WE ELEVATE BRANDS", "& DELIVER RESULTS."],
+            strings: [
+              "WE INSPIRE BRAND",
+              "WE INSPIRE GROWTH",
+              "WE INSPIRE VISIBILITY",
+              "WE INSPIRE SUCCESS",
+              "WE INSPIRE RESULTS",
+            ],
             typeSpeed: 50,
             backSpeed: 30,
             backDelay: 2000,
@@ -37,7 +43,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-10"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14 py-12 md:py-24 relative z-10">
+      <div className="container mx-auto px-4 py-12 md:py-24 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

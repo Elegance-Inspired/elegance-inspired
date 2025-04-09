@@ -1,83 +1,84 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { usePathname, useSearchParams } from "next/navigation"
-import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Sun, Moon } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useTheme } from "next-themes"
-import { cn } from "@/lib/utils"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname, useSearchParams } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
+import { cn } from "@/lib/utils";
+import { navLinks } from "@/data";
 
 export default function NavbarClient() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [scrollingUp, setScrollingUp] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const { theme, setTheme } = useTheme()
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [scrollingUp, setScrollingUp] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+  const searchParams = useSearchParams();
+  const { theme, setTheme } = useTheme();
+
+  // Set mounted to true on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
+      const currentScrollY = window.scrollY;
 
       if (currentScrollY > 50) {
-        setScrolled(true)
+        setScrolled(true);
       } else {
-        setScrolled(false)
+        setScrolled(false);
       }
 
       // Show navbar when scrolling up, hide when scrolling down
       if (currentScrollY < lastScrollY) {
-        setScrollingUp(true)
+        setScrollingUp(true);
       } else if (currentScrollY > 100 && currentScrollY > lastScrollY) {
-        setScrollingUp(false)
+        setScrollingUp(false);
       }
 
-      setLastScrollY(currentScrollY)
-    }
+      setLastScrollY(currentScrollY);
+    };
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [lastScrollY])
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
-  const toggleMenu = () => setIsOpen(!isOpen)
-  const closeMenu = () => setIsOpen(false)
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
-  const navLinks = [
-    { name: "HOME", path: "/" },
-    {
-      name: "ABOUT US",
-      path: "/about",
-      dropdown: [
-        { name: "Who We Are", path: "/about#who-we-are" },
-        { name: "Our Story", path: "/about#our-story" },
-        { name: "Creative Team", path: "/about#creative-team" },
-      ],
-    },
-    {
-      name: "SERVICES",
-      path: "/services",
-      dropdown: [
-        { name: "Creative Branding", path: "/services#creative-branding" },
-        { name: "Strategic Advertising", path: "/services#strategic-advertising" },
-        { name: "Digital Transformation", path: "/services#digital-transformation" },
-        { name: "Quality Printing", path: "/services#quality-printing" },
-        { name: "HR Consulting", path: "/services#consulting" },
-        { name: "Packages", path: "/packages" },
-      ],
-    },
-    { name: "JOURNAL", path: "/blog" },
-    { name: "CONTACT US", path: "/contact" },
-  ]
-
+  // Render a placeholder during SSR
+  if (!mounted) {
+    return (
+      <header className="fixed top-0 left-0 w-full z-50 bg-transparent">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="h-10 w-40"></div>
+          <nav className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link, i) => (
+              <div key={i} className="h-4 w-16"></div>
+            ))}
+            <div className="h-10 w-24 rounded-full"></div>
+            <div className="h-10 w-10 rounded-full"></div>
+          </nav>
+          <div className="flex items-center md:hidden">
+            <div className="h-10 w-10 mr-2"></div>
+            <div className="h-10 w-10"></div>
+          </div>
+        </div>
+      </header>
+    );
+  }
   return (
     <motion.header
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        scrolled ? "backdrop-blur-md bg-background/80" : "bg-transparent",
+        scrolled ? "backdrop-blur-md bg-background/80" : "bg-transparent"
       )}
       initial={{ y: 0 }}
       animate={{ y: scrollingUp || !scrolled ? 0 : -100 }}
@@ -87,7 +88,7 @@ export default function NavbarClient() {
         <Link href="/" className="relative z-10">
           <div className="flex items-center">
             <Image
-              src="/placeholder.svg?height=40&width=160"
+              src="/Elegance logo.png"
               alt="Elegance Inspired Limited"
               width={160}
               height={40}
@@ -103,8 +104,8 @@ export default function NavbarClient() {
               <Link
                 href={link.path}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  pathname === link.path ? "text-primary" : "text-foreground",
+                  "text-sm font-medium transition-colors hover:text-secondary",
+                  pathname === link.path ? "text-secondary" : "text-foreground"
                 )}
               >
                 {link.name}
@@ -129,7 +130,11 @@ export default function NavbarClient() {
             </div>
           ))}
 
-          <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-full" navigate={true}>
+          <Button
+            asChild
+            className="bg-primary hover:bg-primary/90 text-white rounded-full"
+            navigate={true}
+          >
             <Link href="/contact">Let&apos;s Talk</Link>
           </Button>
 
@@ -139,7 +144,12 @@ export default function NavbarClient() {
             aria-label="Toggle theme"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
-            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            <span className="sr-only">Toggle theme</span>
+            {theme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
           </Button>
         </nav>
 
@@ -152,10 +162,20 @@ export default function NavbarClient() {
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="mr-2"
           >
-            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            <span className="sr-only">Toggle theme</span>
+            {theme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
           </Button>
 
-          <Button variant="ghost" size="icon" aria-label="Toggle menu" onClick={toggleMenu}>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Toggle menu"
+            onClick={toggleMenu}
+          >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
@@ -178,7 +198,9 @@ export default function NavbarClient() {
                     href={link.path}
                     className={cn(
                       "block text-lg font-medium py-2",
-                      pathname === link.path ? "text-primary" : "text-foreground",
+                      pathname === link.path
+                        ? "text-primary"
+                        : "text-foreground"
                     )}
                     onClick={closeMenu}
                   >
@@ -216,5 +238,5 @@ export default function NavbarClient() {
         )}
       </AnimatePresence>
     </motion.header>
-  )
+  );
 }

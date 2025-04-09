@@ -104,17 +104,17 @@ export default function ServicesHighlight() {
             <motion.div key={index} variants={itemVariants}>
               <Card className="h-full bg-card hover:shadow-lg transition-shadow duration-300 border border-border/50 overflow-hidden group">
                 <CardHeader className="relative">
-                  <span className="absolute top-4 right-4 text-4xl font-bold text-muted-foreground/10 group-hover:text-secondary/10 transition-colors duration-300">
+                  <span className="absolute top-4 right-4 text-4xl font-bold text-muted-foreground group-hover:text-secondary/70 transition-colors duration-300">
                     {service.number}
                   </span>
                   <div className="mb-2">{service.icon}</div>
-                  <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
+                  <CardTitle className="text-xl font-bold group-hover:text-secondary/70 duration-300">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-muted-foreground">{service.description}</CardDescription>
                 </CardContent>
                 <CardFooter>
-                  <Button asChild variant="link" className="p-0 text-primary hover:text-primary/80">
+                  <Button asChild variant="link" className="p-0 text-primary hover:text-secondary/80">
                     <Link href={service.href}>Learn More</Link>
                   </Button>
                 </CardFooter>

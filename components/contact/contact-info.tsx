@@ -76,10 +76,10 @@ export default function ContactInfo() {
                 <div>
                   <h3 className="font-bold mb-1">Email Us</h3>
                   <Link
-                    href="mailto:info@eleganceinspired.org"
+                    href="mailto:hello@eleganceinspired.org"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    info@eleganceinspired.org
+                    hello@eleganceinspired.org
                   </Link>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function ContactInfo() {
                 </div>
                 <div>
                   <h3 className="font-bold mb-1">Our Location</h3>
-                  <p className="text-muted-foreground">Lagos, Nigeria</p>
+                  <p className="text-muted-foreground">Abuja, Nigeria</p>
                 </div>
               </div>
             </CardContent>
